@@ -1,4 +1,4 @@
-package ders9;
+package ders10;
 
 public class Calculator {
 	public double average(int num1 , int num2) {
