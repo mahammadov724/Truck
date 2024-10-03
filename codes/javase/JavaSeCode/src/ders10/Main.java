@@ -1,18 +1,13 @@
 package ders10;
 
-import ders9.Calculator;
-
 public class Main {
+    public static void main(String[] args) {
+        Circle myCircle = new Circle(5.0);
 
-	public static void main(String[] args) {
-		Calculator calculator = new Calculator();
-        
-        double result1 = calculator.average(10,20);
-        System.out.println("10 ve 20-nin eded ortasi:" + " " + result1);
-        
-        double result2 = calculator.average(15,20);
-        System.out.println("15 ve 20-nin eded ortasi:" + " " + result2);
+        Calculator calculator = new Calculator();
 
-	}
+        calculator.calculateCircleLength(myCircle);
 
+        System.out.println("Circle Length: " + myCircle.length);
+    }
 }
