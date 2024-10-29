@@ -17,7 +17,7 @@ public class Car {
 
 	    public void accelerate(int increment) {
 	        speed += increment;
-	        System.out.println("Sürət artırıldı: " + speed + " km/s");
+	        System.out.println("Sürət Artırıldı: " + speed + " km/s");
 	    }
 
 	    public void brake(int decrement) {
