@@ -50,10 +50,10 @@ public class ArraysDemoHome {
             }
         }
         
-        System.out.println("Sıralanmış massiv (artan):");
-        for (int number : numbers) {
-            System.out.print(number + " ");
-        }
+        System.out.println("Sıralanmış massiv (azalan):");
+        for (int i = numbers[3]; i > numbers[0]; i--) {
+			System.out.println(i);
+		}
         
         //Ders 15
 	}
