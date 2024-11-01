@@ -12,7 +12,8 @@ public class MainOther {
 	        System.out.println("Book Title: " + myBook.title);
 	        System.out.println("Book Author: " + myBook.author);
 	        System.out.println("Book Id: " + myBook.id);
-	        System.out.println("Page count: " + myBook.page);
+	        System.out.println("Page count: " + myBook.page)
+	        //ders18
 	}
 
 }
