@@ -3,12 +3,14 @@ package ders18AccesModifier;
 public class Book {
 	
 	public String title;
-    public String author;
-    public String id;
-    public Book(String title, String author, String id) {
+	protected String author;
+    String id;
+    private String page;
+    public Book(String title, String author, String id, String page) {
         this.title = title;
         this.author = author;
         this.id = id;
+        this.page = page;
     }
 
 }
