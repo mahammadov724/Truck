@@ -29,7 +29,7 @@ public class Enum {
 		default:
 			System.out.println("Səhvdir!");
 		}
-
+		 scan.close();
 	}
 
 }
