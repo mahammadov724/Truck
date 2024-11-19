@@ -10,7 +10,7 @@ public class InventoryItem {
 			this.quantity = 0;
 		}
 		else {
-			this.quantity = quantity;
+			this.quantity = quantity;   //int
 		}
 	}
 	public int getQuantity() {

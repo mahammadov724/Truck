@@ -8,7 +8,7 @@ public class Main {
 	inventoryItem.setQuantity (79);
 	inventoryItem.setPrice (100);
 	System.out.println("Name: " + inventoryItem.getName());
-    System.out.println("Quantity: " + inventoryItem.getQuantity());
+    System.out.println("Quantity: " + inventoryItem.getQuantity());//int
     System.out.println("Price: " + inventoryItem.getPrice());
 	}
 
