@@ -10,6 +10,7 @@ enum Yay {
 public class Enum {
 
 	public static void main(String[] args) {
+		Yay iyun = Yay.Iyun;
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Yayın İçindəki Ayları Yaz!");
 		String ay = scan.nextLine().toLowerCase();
