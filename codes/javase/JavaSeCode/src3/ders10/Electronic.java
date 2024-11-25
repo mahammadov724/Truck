@@ -13,5 +13,4 @@ public class Electronic extends Product{
         System.out.println("Electronik Endirimi 20% çıxıldı:) : " + newPrice);
         return newPrice;
     }
-	u8r88u
 }

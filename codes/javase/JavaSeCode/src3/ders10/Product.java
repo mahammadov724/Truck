@@ -15,5 +15,4 @@ public class Product {
         System.out.println("Product Endirimi 10% çıxıldı:) : " + newPrice);
         return newPrice;
     }
-	wadawddaw
 }
