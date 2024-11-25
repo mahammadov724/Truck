@@ -12,5 +12,6 @@ public class Clothing extends Product{
         double newPrice = price - discount;
         System.out.println("Paltar Endirimi 15% çıxıldı:) : " + newPrice);
         return newPrice;
-    }
+	}
+	//ddd
 }
