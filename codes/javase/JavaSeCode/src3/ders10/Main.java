@@ -15,4 +15,5 @@ public class Main {
 		
 		System.out.println("Bizi Seçdiyinizə Görə Təşəkkür Edirik :)");
 	}
+	//A
 }
