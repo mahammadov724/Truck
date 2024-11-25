@@ -6,11 +6,11 @@ public class InventoryItem {
 	private double price;
 	
 	public void setQuantity(int quantity) {
-		if (this.quantity < 0) {
-			this.quantity = 0;
+		if (quantity < 0) {
+			quantity = 0;
 		}
 		else {
-			this.quantity = quantity;   //int
+			quantity = quantity;
 		}
 	}
 	public int getQuantity() {
@@ -25,7 +25,7 @@ public class InventoryItem {
 	}
 	
 	public void setPrice(double price) {
-		if (this.price < 0) {
+		if (price < 0) {
 			System.out.println("Qiymet Menfi Eded Ola Bilmeeeez!!");
 		}
 	}
