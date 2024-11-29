@@ -1,7 +1,7 @@
 package ders11;
 
 public class Circle implements Shape {
-    private double radius; sdsds
+    private double radius;
 
     public Circle(double radius) {
         this.radius = radius;
