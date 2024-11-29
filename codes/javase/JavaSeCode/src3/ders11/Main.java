@@ -11,6 +11,6 @@ public class Main {
         System.out.println("Rectangle Area: " + rectangle.getArea());
         System.out.println("Rectangle Perimeter: " + rectangle.getPerimeter());
 
-	}
+	}//s
 
 }
