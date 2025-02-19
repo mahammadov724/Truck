@@ -16,7 +16,7 @@ public class Employee {
 
     public Employee() {
         this.id = 101;
-        this.name = "John Doe";
+        this.name = "Neriman";
         this.age = 30;
         this.salary = 5000.0;
     }

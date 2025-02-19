@@ -1,4 +1,4 @@
-package az.developia.spring_projekt_2sentyabr;
+package az.developia.spring_projekt_2sentyabr.entity;
 
 public class Book {
 		private int id;

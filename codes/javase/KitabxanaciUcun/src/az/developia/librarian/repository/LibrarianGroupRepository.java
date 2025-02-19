@@ -54,7 +54,7 @@ public void addGroup(LibrarianGroupEntity teacherGroup) {
 				group.setName(result.getString("name"));
 				group.setRegister_date(result.getTimestamp("register_date").toLocalDateTime());
 				group.setTeacher_id(result.getInt("teacher_id"));
-				teacherGroup.add(group);
+				LibrarianGroup.add(group);
 				
 			}
 			
@@ -65,7 +65,7 @@ public void addGroup(LibrarianGroupEntity teacherGroup) {
 			System.out.println(e.getMessage());
 		}
 		
-		return teacherGroup;
+		return LibrarianGroup;
 	}
 	
 	
