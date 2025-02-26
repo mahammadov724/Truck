@@ -1,16 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Books</title>
+    <title>Kitablar Listesi</title>
 </head>
 <body>
-    <h1>Book List</h1>
+    <b>Bu kitablar səhifəsidir</b>
+
     <ul>
-        <li>Book 1</li>
-        <li>Book 2</li>
-        <li>Book 3</li>
+        <li th:each="book : ${books}">
+            <p>
+                <strong>Kitabın Adı:</strong> <span th:text="${book.name}"></span>
+            </p>
+            <p>
+                <strong>Müəllif:</strong> <span th:text="${book.author}"></span>
+            </p>
+        </li>
     </ul>
+
 </body>
 </html>
+
