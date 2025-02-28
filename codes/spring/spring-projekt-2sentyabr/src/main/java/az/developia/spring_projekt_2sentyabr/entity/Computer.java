@@ -1,6 +1,7 @@
 package az.developia.spring_projekt_2sentyabr.entity;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component(value = "MyComputer")
@@ -10,7 +11,7 @@ public class Computer {
     private String brand;
     private double price;
     private String color;
-
+    @Qualifier(value = "ram")
     @Autowired
     private RAM ram;
 

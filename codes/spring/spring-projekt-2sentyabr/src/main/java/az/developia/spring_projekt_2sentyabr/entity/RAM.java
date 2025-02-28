@@ -2,7 +2,7 @@ package az.developia.spring_projekt_2sentyabr.entity;
 
 import org.springframework.stereotype.Component;
 
-@Component  
+@Component(value="ram1")
 public class RAM {
     private int size;
     private String type;

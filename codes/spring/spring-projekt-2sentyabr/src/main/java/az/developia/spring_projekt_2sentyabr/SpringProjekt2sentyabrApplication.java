@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import az.developia.spring_projekt_2sentyabr.entity.Computer;
-import az.developia.spring_projekt_2sentyabr.entity.Computer1;
 import az.developia.spring_projekt_2sentyabr.entity.Employee;
 import az.developia.spring_projekt_2sentyabr.entity.Home;
 
@@ -18,13 +17,16 @@ public class SpringProjekt2sentyabrApplication {
         Employee employee = run.getBean(Employee.class);
         System.out.println(employee);
         
-        Computer1 computer1 = run.getBean(Computer1.class);
-        System.out.println(computer1);
+        Computer computer = run.getBean(Computer.class);
+        System.out.println(computer);
         
         Home home1 = run.getBean(Home.class);
         System.out.println(home1); 
 
         Home home2 = run.getBean(Home.class);
         System.out.println(home2);  
+        
+        System.out.println(computer.getRam());
+        
     }
 }
