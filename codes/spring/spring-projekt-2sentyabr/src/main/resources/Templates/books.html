@@ -9,10 +9,16 @@
     <ul>
         <li th:each="book : ${books}">
             <p>
-                <strong>Kitabın Adı:</strong> <span th:text="${book.name}"></span>
+                <strong>Kitabın Adı:</strong> <span th:text="${book.getName()}"></span>
             </p>
             <p>
-                <strong>Müəllif:</strong> <span th:text="${book.author}"></span>
+                <strong>Müəllif:</strong> <span th:text="${book.getId()}"></span>
+            </p>
+            <p>
+                <strong>Müəlsadqwlif:</strong> <span th:text="${book.getPrice()}"></span>
+            </p>
+            <p>
+                <strong>Müəlsadasdalif:</strong> <span th:text="${book.getPageCount()}"></span>
             </p>
         </li>
     </ul>
