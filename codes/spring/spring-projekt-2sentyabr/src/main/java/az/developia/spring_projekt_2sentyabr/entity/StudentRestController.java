@@ -3,11 +3,15 @@ package az.developia.spring_projekt_2sentyabr.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import az.developia.spring_projekt_2sentyabr.exception.OurRunTimeException;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(path = "/api/students")
@@ -24,7 +28,10 @@ public class StudentRestController {
 	}
 	
 	@PostMapping(path = "/add")
-	public void addStudent(@RequestBody Book student) {
+	public void addStudent(@Valid @RequestBody Book student,BindingResult br) {
+		if (br.hasErrors()) {
+			throw new OurRunTimeException(null,"id tapilmadi");
+		}
 		System.out.println(student);
 	}
 	
