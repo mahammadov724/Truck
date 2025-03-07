@@ -1,5 +1,5 @@
 package az.developia.spring_projekt_2sentyabr.exception;
-
+//a
 import org.springframework.validation.BindingResult;
 
 public class OurRunTimeException extends RuntimeException {

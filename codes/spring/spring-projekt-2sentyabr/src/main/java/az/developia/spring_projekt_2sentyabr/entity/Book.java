@@ -1,7 +1,7 @@
 package az.developia.spring_projekt_2sentyabr.entity;
 
 import jakarta.validation.constraints.Size;
-
+//a
 public class Book {
 		private int id;
 		@Size(min = 2,max = 30,message = "minimum 2 maksimum 30 simvol ola biler!")

@@ -1,5 +1,5 @@
 package az.developia.spring_projekt_2sentyabr.entity;
-
+//a
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class StudentRestController {
 	@PostMapping(path = "/add")
 	public void addStudent(@Valid @RequestBody Book student,BindingResult br) {
 		if (br.hasErrors()) {
-			throw new OurRunTimeException(null,"id tapilmadi");
+			throw new OurRunTimeException(br);
 		}
 		System.out.println(student);
 	}
