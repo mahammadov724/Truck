@@ -13,12 +13,4 @@ public class EmployeeConfig {
         return employee;
     }
     
-    @Bean
-    public RAM myRam(RAM ram) {
-    	RAM ram1 = new RAM();
-    	ram.setType("Ryzen");
-    	ram.setSpeed(3600);
-    	ram.setSize(0);
-    	return ram;
-    }
 }

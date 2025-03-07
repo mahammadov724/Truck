@@ -26,7 +26,5 @@ public class SpringProjekt2sentyabrApplication {
         Home home2 = run.getBean(Home.class);
         System.out.println(home2);  
         
-        System.out.println(computer.getRam());
-        
     }
 }

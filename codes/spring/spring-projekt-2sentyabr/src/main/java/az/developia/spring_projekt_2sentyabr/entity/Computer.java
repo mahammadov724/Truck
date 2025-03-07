@@ -11,9 +11,6 @@ public class Computer {
     private String brand;
     private double price;
     private String color;
-    @Qualifier(value = "ram")
-    @Autowired
-    private RAM ram;
 
     public Computer() {
         this.id = 1;
@@ -54,17 +51,11 @@ public class Computer {
         this.color = color;
     }
 
-    public RAM getRam() {
-        return ram;
-    }
-
-    public void setRam(RAM ram) {
-        this.ram = ram;
-    }
-
-    @Override
-    public String toString() {
-        return "Computer: id=" + id + ", brand=" + brand + ", price=" + price + 
-               ", color=" + color + ", " + ram.toString();
-    }
+	@Override
+	public String toString() {
+		return "Computer [id=" + id + ", brand=" + brand + ", price=" + price + ", color=" + color + "]";
+	}
+    
 }
+
+
