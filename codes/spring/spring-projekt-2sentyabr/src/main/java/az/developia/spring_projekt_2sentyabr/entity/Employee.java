@@ -3,7 +3,7 @@ package az.developia.spring_projekt_2sentyabr.entity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component(value = "employee")
 public class Employee {
 
     private int id;

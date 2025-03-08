@@ -1,4 +1,4 @@
-package az.developia.spring_projekt_2sentyabr.entity;
+package az.developia.spring_proyekt_2setyabr.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import az.developia.spring_projekt_2sentyabr.entity.Book;
 
 
 @Controller

@@ -14,7 +14,7 @@ public class SpringProjekt2sentyabrApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext run = SpringApplication.run(SpringProjekt2sentyabrApplication.class, args);
         
-        Employee employee = run.getBean(Employee.class);
+        Employee employee = run.getBean("myEmployee", Employee.class);
         System.out.println(employee);
         
         Computer computer = run.getBean(Computer.class);

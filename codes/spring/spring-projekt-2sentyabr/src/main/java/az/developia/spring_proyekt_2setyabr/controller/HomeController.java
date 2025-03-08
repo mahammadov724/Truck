@@ -1,4 +1,4 @@
-package az.developia.spring_projekt_2sentyabr.entity;
+package az.developia.spring_proyekt_2setyabr.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
