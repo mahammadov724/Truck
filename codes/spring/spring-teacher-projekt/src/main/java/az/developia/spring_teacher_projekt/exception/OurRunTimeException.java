@@ -5,8 +5,8 @@ import org.springframework.validation.BindingResult;
 public class OurRunTimeException extends RuntimeException{
 	private BindingResult br;
 
-	public OurRunTimeException(BindingResult br) {
-		super();
+	public OurRunTimeException(BindingResult br,String message) {
+		super(message);
 		this.br = br;
 	}
 	
