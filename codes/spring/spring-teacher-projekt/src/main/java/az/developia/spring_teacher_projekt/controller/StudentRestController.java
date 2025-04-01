@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import az.developia.spring_teacher_projekt.dto.StudentRequestDto;
 import az.developia.spring_teacher_projekt.entity.Student;
 import az.developia.spring_teacher_projekt.exception.OurRunTimeException;
 import az.developia.spring_teacher_projekt.repository.StudentRepository;
@@ -39,34 +40,13 @@ public class StudentRestController {
 	@GetMapping
 	public List<String> GetStudents(){
 		List<String> students = new ArrayList<String>();
-//		students.add("Neriman");
-//		students.add("Resul");
-//		students.add("Geray");
-//		students.add("Ekber");
-//		students.add("Nihad");
+
 		return students;
 		
-//		try {
-//			Connection connection = dataSource.getConnection();
-//			Statement st = connection.createStatement();
-//			String query = "select * from students";
-//			ResultSet executeQuery = st.executeQuery(query);
-//			while (executeQuery.next()) {
-//				Student s = new Student();
-//				s.setId(executeQuery.getInt("id"));
-//				s.setName(executeQuery.getName("name"));
-//				s.setSurname(executeQuery.getSurname("surname"));
-//				students.add(s);
-//			}
-//		} catch (Exception e) {
-//			System.out.println(e.getMessage());
-//		}
-//		
-//		return students;
 	};
 	
 	@GetMapping(path = "search")
-	public List<Student> search(@RequestParam(Name = "query",required = false) String query){
+	public List<Student> search(@RequestParam(name = "query",required = false) String query){
 		List<Student> all = studentRepository.findAll();
 		if (query == null) {
 			return all;
@@ -76,22 +56,17 @@ public class StudentRestController {
 	
 	
 	@PostMapping(path = "/add")
-	public void addStudent(@Valid @RequestBody Student student,BindingResult br) {
+	public void addStudent(@Valid @RequestBody StudentRequestDto student,BindingResult br) {
 		if (br.hasErrors()) {
 			throw new OurRunTimeException(br,"sdasd");
 		}
-		System.out.println(student);
-	
-//	try {
-//		Connection connection = dataSource.getConnection();
-//		Statement st = connection.createStatement();
-//		String query = "insert into students(name,surname) values('"+student.getName()+"','"+student.getSurname()+"')";
-//		st.executeUpdate(query);
-//		connection.close();
-//	} catch(Exception e) {
-//		System.out.println(e.getMessage());
-//	}
-		studentRepository.save(student);
+		
+		Student s = new Student();
+		s.setId(null);
+		s.setName(student.getName());
+		s.setSalary(student.getSalary());
+		
+		StudentRequestDto.save(student);
 	}
 	
 	@PutMapping
