@@ -12,6 +12,14 @@ import lombok.Setter;
 public class ValidationResponse {
 	private String field;
 	private String ErrorMessage;
+	public void setField(String field2) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void setField1(String field2) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 }

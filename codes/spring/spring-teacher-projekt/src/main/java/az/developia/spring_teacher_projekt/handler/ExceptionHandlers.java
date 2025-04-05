@@ -32,7 +32,7 @@ public class ExceptionHandlers {
 			List<ValidationResponse> validations = new ArrayList <ValidationResponse>();
 			for(FieldError error:fieldErrors) {
 				ValidationResponse validation = new ValidationResponse();
-				validation.setField(error.getField());
+				validation.setField1(error.getField());
 				validation.setErrorMessage(error.getDefaultMessage());
 				validation.add(validation);
 			}

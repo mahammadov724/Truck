@@ -53,4 +53,8 @@ public class Book {
 	    public String toString() {
 	        return "Book [id=" + id + ", name=" + name + ", price=" + price + ", pageCount=" + pageCount + "]";
 	    }
+
+		public void setId(Long id2) {
+			
+		}
 	}
