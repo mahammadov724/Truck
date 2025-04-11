@@ -16,10 +16,11 @@ import codes.neriman.my_spring_project.repository.BookRepository;
 import codes.neriman.my_spring_project.responce.BookResponce;
 import codes.neriman.my_spring_project.service.BookService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping(path = "/api/Book")
-
+@RequiredArgsConstructor
 public class BookRestController {
 	@Autowired
 	private BookRepository bookrepository;
@@ -28,7 +29,7 @@ public class BookRestController {
 	
 	@GetMapping
 	public BookResponce getBooks() {
-		return BookService.getBooks();
+		return bookService.getBooks();
 		
 	}
 	
