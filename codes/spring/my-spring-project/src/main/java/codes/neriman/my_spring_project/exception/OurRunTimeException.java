@@ -14,4 +14,8 @@ public class OurRunTimeException extends RuntimeException {
     public BindingResult getBindingResult() {
         return bindingResult;
     }
+
+	public BindingResult getBr() {
+		return null;
+	}
 }
