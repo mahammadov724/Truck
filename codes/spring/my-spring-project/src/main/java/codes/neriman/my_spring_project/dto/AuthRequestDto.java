@@ -1,5 +1,7 @@
 package codes.neriman.my_spring_project.dto;
 
+import java.time.LocalDate;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,9 +12,11 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AuthRequestDto {
-	private Integer id;
-    private String title;
-    private String author;
-    private int year;
+	private String name;
+	private String username;
+    private String password;
+	public String getUsername() {
+		return null;
+	}
     
 }
