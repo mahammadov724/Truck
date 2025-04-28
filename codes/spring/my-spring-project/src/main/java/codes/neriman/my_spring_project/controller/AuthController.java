@@ -29,7 +29,7 @@ public class AuthController {
 	}
 	
 	@PostMapping(path = "/login")
-	public String login(AuthRequestDto dto) {
+	public String login(@RequestBody AuthRequestDto dto) {
 		return service.login(dto);
 	}
 }

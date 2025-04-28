@@ -11,25 +11,25 @@ import org.springframework.stereotype.Component;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Component
-@RequiredArgsConstructor
 public class JwtUtil {
-	
 	private final Key signingKey;
 	
-	private JwtUtil(@Value("${jwt.secret}") String secretKey) {
+	public JwtUtil(@Value("${jwt.secret}") String secretKey) {
 		byte[] decode = Base64.getDecoder().decode(secretKey);
 		this.signingKey = Keys.hmacShaKeyFor(decode);
+		System.out.println(decode.length);
 	}
 	
 	public String generateToken(String username) {
 		return Jwts.builder()
 		.setSubject(username)
 		.setIssuedAt(new Date())
-		.setExpiration(new Date(System
-		.currentTimeMillis()+ 86400000))
+		.setExpiration(new Date(System.currentTimeMillis() + 86400000)) //1 gun
 		.signWith(signingKey)
 		.compact();
 	}

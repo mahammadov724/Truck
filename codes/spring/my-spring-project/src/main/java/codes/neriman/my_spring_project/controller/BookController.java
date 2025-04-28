@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import codes.neriman.my_spring_project.entity.Book;
+import codes.neriman.my_spring_project.exception.OurRunTimeException;
 import codes.neriman.my_spring_project.entity.Book;
 import codes.neriman.my_spring_project.repository.BookRepository;
 
@@ -50,6 +51,15 @@ class BookController {
 
 	    @DeleteMapping("/{id}")
 	    public void deleteBook(@PathVariable Integer id) {
-	        bookRepository.deleteById(id);
+	       
+	        if (id== null || id <= 0) {
+				throw new OurRunTimeException(null, "id mutleqdir duzgun olsun");
+			}
+	        if (bookRepository.findById(id).isPresent()) {
+	        	bookRepository.deleteById(id);
+			}else {
+				throw new OurRunTimeException(null, "id tapilmadi :<");
+			}
 	    }
+	    
 }

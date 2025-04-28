@@ -10,21 +10,25 @@ import org.springframework.stereotype.Service;
 import codes.neriman.my_spring_project.dto.AuthRequestDto;
 import codes.neriman.my_spring_project.entity.Book;
 import codes.neriman.my_spring_project.entity.Reader;
+import codes.neriman.my_spring_project.exception.InvalidCredentialsException;
+import codes.neriman.my_spring_project.exception.OurRunTimeException;
 import codes.neriman.my_spring_project.repository.BookRepository;
-import codes.neriman.my_spring_project.repository.UserRepository;
+import codes.neriman.my_spring_project.repository.ReaderRepository;
+import codes.neriman.my_spring_project.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class AuthService {
+	private final JwtUtil jwtUtil;
+	private final ReaderRepository readerRepository;
 	private final BookRepository bookRepository;
 	private final PasswordEncoder passwordEcodocer;
-	private final UserRepository userRepository;
 	
 	public String create(AuthRequestDto dto) {
-		Optional<User> byUsername = userRepository.findByUsername(dto.getUsername());
+		Optional<Reader> byUsername = readerRepository.findByUsername(dto.getUsername());
 		if (byUsername.isPresent()) {
-			throw new RuntimeException("Username is exsist");
+			throw new OurRunTimeException(null,"Username Is Exsist");
 		}
 		
 		String encode = passwordEcodocer.encode(dto.getPassword());
@@ -34,19 +38,20 @@ public class AuthService {
 		reader.setName(dto.getName());
 		reader.setUsername(dto.getUsername());
 		reader.setPassword(encode);
-		bookRepository.save(reader);
-		return "Book yaradildi :D";
+		readerRepository.save(reader);
+		return "Istifadeci Qeydiyyatdan Kecti :D";
 	}
 	
 	public String login (AuthRequestDto dto) {
-		Optional<User> user = userRepository.findByUsername(dto.getUsername());
-		if (!user.isPresent()) {
-			throw new RuntimeException("User not found");
-		}
-		if (!passwordEcodocer.matches(dto.getPassword(), user.get().getPassword())) {
-			throw new RuntimeException("Password Incorrect");
-		}
+		Optional<Reader> user = readerRepository.findByUsername(dto.getUsername());
+		
+		if (!user.isPresent() || !passwordEcodocer.matches(dto.getPassword(), user.get().getPassword())) {
+			throw new InvalidCredentialsException("Username or Password Incorrect");
+		}	
+		
 		return jwtUtil.generateToken(user.get().getUsername());
 	}
+	
+	
 
 }

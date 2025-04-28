@@ -10,6 +10,5 @@ import codes.neriman.my_spring_project.entity.Reader;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Integer> {
 
-	void save(Reader reader);
 	
 }

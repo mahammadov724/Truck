@@ -8,12 +8,13 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import codes.neriman.my_spring_project.util.JwtUtil;
 
 import java.io.IOException;
-
+@Component
 public class AuthFilter extends OncePerRequestFilter {
 
     private final JwtUtil jwtUtil;
