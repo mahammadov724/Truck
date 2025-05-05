@@ -9,5 +9,7 @@ import codes.neriman.my_spring_project.entity.Reader;
 public interface ReaderRepository extends JpaRepository<Reader, Long> {
 
 	Optional<Reader> findByUsername(String username);
+
+	Reader getUserByUsername(String username);
 	
 }

@@ -1,11 +1,12 @@
 package codes.neriman.my_spring_project.service;
 
+import java.util.Map;
 import java.util.Optional;
 
 import org.apache.catalina.User;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 
 import codes.neriman.my_spring_project.dto.AuthRequestDto;
 import codes.neriman.my_spring_project.entity.Book;
@@ -50,6 +51,19 @@ public class AuthService {
 		}	
 		
 		return jwtUtil.generateToken(user.get().getUsername());
+		
+	}
+
+	public ResponseEntity<Map<String, String>> getUserDetail(String token) {
+ 		if (token.startsWith("Bearer")) {
+ 			token=token.substring(7);
+ 		}
+ 		Map<String,String> claims = jwtUtil.extractClaims(token);
+ 		return ResponseEntity.ok(claims);
+ 	}
+
+	public ResponseEntity<Map<String, String>> getBookDetail(String token) {
+		return null;
 	}
 	
 	

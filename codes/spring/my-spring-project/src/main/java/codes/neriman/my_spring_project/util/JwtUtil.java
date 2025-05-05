@@ -4,6 +4,8 @@ package codes.neriman.my_spring_project.util;
 import java.security.Key;
 import java.util.Base64;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -43,4 +45,19 @@ public class JwtUtil {
 		
 		return claims.getSubject();
 	}
+	
+	public Map<String, String> extractClaims(String token) {
+ 		Claims claims = Jwts.parserBuilder()
+ 				.setSigningKey(signingKey)
+ 				.build()
+ 				.parseClaimsJws(token)
+ 				.getBody();
+ 		
+ 		Map<String, String> claimMap=new HashMap<String, String>();
+ 		claimMap.put("firstName", claims.get("firstName").toString());
+ 		claimMap.put("lastName", claims.get("lastName").toString());
+ 		claimMap.put("email", claims.get("email").toString());
+ 		
+ 		return claimMap;
+ 	}
 }

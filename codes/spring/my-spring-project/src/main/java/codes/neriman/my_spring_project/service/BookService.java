@@ -2,6 +2,7 @@ package codes.neriman.my_spring_project.service;
 
 import codes.neriman.my_spring_project.dto.BookRequestDto;
 import codes.neriman.my_spring_project.entity.Book;
+import codes.neriman.my_spring_project.entity.Reader;
 import codes.neriman.my_spring_project.exception.OurRunTimeException;
 import codes.neriman.my_spring_project.repository.BookRepository;
 import codes.neriman.my_spring_project.repository.ReaderRepository;
@@ -20,6 +21,9 @@ public class BookService {
 
     @Autowired
     private BookRepository bookRepository;
+    
+    @Autowired
+    private ReaderRepository readerRepository;
 
     public BookResponce getBooks() {
         List<Book> books = bookRepository.findAll(); 
@@ -55,11 +59,14 @@ public class BookService {
     
     public void add(BookRequestDto dto) {
     	String username = SecurityContextHolder.getContext().getAuthentication().getName();
+    	Reader reader = readerRepository.getUserByUsername(username);
+    	Integer id = reader.getId();
     	Book book = new Book();
     	book.setId(null);
     	book.setAuthor(dto.getAuthor());
     	book.setTitle(dto.getTitle());
     	book.setYear(dto.getYear());
+    	book.setUserId(id);
     }
     
     public BookResponce get() {
