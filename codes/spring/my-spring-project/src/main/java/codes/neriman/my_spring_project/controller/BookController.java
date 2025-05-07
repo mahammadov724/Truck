@@ -62,4 +62,10 @@ class BookController {
 			}
 	    }
 	    
+	    @GetMapping("/titles")
+	    public List<String> getAllBookTitles() {
+	        return bookRepository.findAllBookTitles();
+	    }
+
+	    
 }
