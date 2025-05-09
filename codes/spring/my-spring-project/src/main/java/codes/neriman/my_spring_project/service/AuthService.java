@@ -66,6 +66,16 @@ public class AuthService {
 		return null;
 	}
 	
-	
+	public void delete(Integer id) { 
+		if (id == null || id<=0) { 
+		throw new OurRunTimeException(null, "id mutleqdir"); 
+		} 
+		Optional<Book> finded = bookRepository.findById(id); 
+		if (finded.isPresent()) { 
+		Book book = finded.get(); 
+		bookRepository.deleteById(id); 
+		bookRepository.deleteBookInfo (book.getId()); 
+		}else { 
+		throw new OurRunTimeException(null, "id tapilmadi"); }}
 
 }

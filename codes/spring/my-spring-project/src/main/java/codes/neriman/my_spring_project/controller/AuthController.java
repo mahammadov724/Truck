@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -17,6 +19,7 @@ import codes.neriman.my_spring_project.dto.AuthRequestDto;
 import codes.neriman.my_spring_project.exception.OurRunTimeException;
 import codes.neriman.my_spring_project.service.AuthService;
 import jakarta.validation.Valid;
+import jakarta.websocket.server.PathParam;
 
 @RestController
 @RequestMapping(path = "/auth")
@@ -42,4 +45,9 @@ public class AuthController {
  	public ResponseEntity<Map<String, String>> getUserDetails(@RequestHeader("Authorization") String token){
  		return service.getBookDetail(token);
  	}
+	
+	@DeleteMapping
+	public void deleteBook(@PathVariable Integer id) {
+		service.delete(id);
+	}
 }
