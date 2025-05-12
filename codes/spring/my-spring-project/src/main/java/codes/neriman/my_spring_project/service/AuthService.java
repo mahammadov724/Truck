@@ -1,7 +1,9 @@
 package codes.neriman.my_spring_project.service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.apache.catalina.User;
 import org.springframework.http.ResponseEntity;
@@ -9,10 +11,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import codes.neriman.my_spring_project.dto.AuthRequestDto;
+import codes.neriman.my_spring_project.entity.Authorities;
 import codes.neriman.my_spring_project.entity.Book;
 import codes.neriman.my_spring_project.entity.Reader;
 import codes.neriman.my_spring_project.exception.InvalidCredentialsException;
 import codes.neriman.my_spring_project.exception.OurRunTimeException;
+import codes.neriman.my_spring_project.repository.AuthorityRepository;
 import codes.neriman.my_spring_project.repository.BookRepository;
 import codes.neriman.my_spring_project.repository.ReaderRepository;
 import codes.neriman.my_spring_project.util.JwtUtil;
@@ -25,6 +29,7 @@ public class AuthService {
 	private final ReaderRepository readerRepository;
 	private final BookRepository bookRepository;
 	private final PasswordEncoder passwordEcodocer;
+	private final AuthorityRepository authorityRepository;
 	
 	public String create(AuthRequestDto dto) {
 		Optional<Reader> byUsername = readerRepository.findByUsername(dto.getUsername());
@@ -41,6 +46,11 @@ public class AuthService {
 		reader.setPassword(encode);
 		readerRepository.save(reader);
 		return "Istifadeci Qeydiyyatdan Kecti :D";
+		
+		Authorities a1=new Authorities(); 
+		a1.setUsername(reader.getUsername()); 
+		a1.setAuthority("ROLE_ADD_MOVIE"); 
+		authorityRepository.save(a1); 
 	}
 	
 	public String login (AuthRequestDto dto) {
@@ -49,6 +59,10 @@ public class AuthService {
 		if (!user.isPresent() || !passwordEcodocer.matches(dto.getPassword(), user.get().getPassword())) {
 			throw new InvalidCredentialsException("Username or Password Incorrect");
 		}	
+		
+		List<String> aauthorityList = authorityRepository.findByUsername(reader.get().getUsername())
+				.map(authorities :: getAuthority)
+				.collect(Collectors.toList());
 		
 		return jwtUtil.generateToken(user.get().getUsername());
 		
