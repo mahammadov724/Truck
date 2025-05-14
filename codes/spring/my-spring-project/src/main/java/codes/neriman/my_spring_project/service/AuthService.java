@@ -45,12 +45,13 @@ public class AuthService {
 		reader.setUsername(dto.getUsername());
 		reader.setPassword(encode);
 		readerRepository.save(reader);
-		return "Istifadeci Qeydiyyatdan Kecti :D";
 		
 		Authorities a1=new Authorities(); 
 		a1.setUsername(reader.getUsername()); 
-		a1.setAuthority("ROLE_ADD_MOVIE"); 
+		a1.setAuthority("ROLE_ADD_READER"); 
 		authorityRepository.save(a1); 
+		
+		return "Istifadeci Qeydiyyatdan Kecti :D";
 	}
 	
 	public String login (AuthRequestDto dto) {
@@ -60,8 +61,8 @@ public class AuthService {
 			throw new InvalidCredentialsException("Username or Password Incorrect");
 		}	
 		
-		List<String> aauthorityList = authorityRepository.findByUsername(reader.get().getUsername())
-				.map(authorities :: getAuthority)
+		List<String> authorityList = authorityRepository.findUserAuthority(user.get().getUsername())
+				.map(Authorities :: getAuthority)
 				.collect(Collectors.toList());
 		
 		return jwtUtil.generateToken(user.get().getUsername());
