@@ -17,5 +17,9 @@ public class BookResponce {
 	
 	private List<Book> books;
 	private double length;
+	public void setTitles(List<String> filteredTitles) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

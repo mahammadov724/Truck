@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import codes.neriman.my_spring_project.entity.Book;
 import codes.neriman.my_spring_project.entity.Reader;
+import codes.neriman.my_spring_project.service.book;
 import jakarta.transaction.Transactional;
 
 @Repository
@@ -21,4 +22,10 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 	 @Query(value = "Delete from 2sentyabr where user_id?1",nativeQuery = true)
 	 @Modifying
 	void deleteBookInfo(Integer id);
+
+	book getUserByUsername(String username);
+
+	List<Book> findByUserId(Integer id);
+
+	Book getBookByUsername(String username);
 }

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
@@ -74,6 +75,47 @@ public class BookService {
     	responce.setBooks(bookRepository.findAll());
     	return responce;
     }
-
     
+    public BookResponce getMyOwn() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Book user = bookRepository.getBookByUsername(username);
+        Integer id = user.getId();
+
+        List<Book> books = bookRepository.findByUserId(id);
+        Function<Book, String> f = new Function<Book, String>(){
+        	@Override
+        	public String apply(Book t) {
+        		return t.getTitle();
+        	}
+        };
+
+        List<String> filteredTitles = books.stream()
+            .map(Book::getTitle)
+            .filter(title -> title.contains("a"))
+            .collect(Collectors.toList());
+
+        BookResponce response = new BookResponce();
+        response.setTitles(filteredTitles);
+        return response;
+    }
+
+
+    public void deleteOwnBook(Integer id) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Reader reader = readerRepository.getUserByUsername(username);
+
+        if (id == null || id <= 0) {
+            throw new OurRunTimeException(null, "id mütləqdir");
+        }
+
+        Book book = bookRepository.findById(id).orElseThrow(() -> new OurRunTimeException(null, "id tapilmadi"));
+
+        if (!book.getUserId().equals(reader.getId())) {
+            throw new OurRunTimeException(null, "öz kitabını sil");
+        }
+
+        bookRepository.deleteById(id);
+    }
+
+
 }
