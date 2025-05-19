@@ -61,7 +61,7 @@ public class AuthService {
 			throw new InvalidCredentialsException("Username or Password Incorrect");
 		}	
 		
-		List<String> authorityList = authorityRepository.findUserAuthority(user.get().getUsername())
+		List<String> authorityList = authorityRepository.findUserAuthority(user.get().getUsername()).stream()
 				.map(Authorities :: getAuthority)
 				.collect(Collectors.toList());
 		

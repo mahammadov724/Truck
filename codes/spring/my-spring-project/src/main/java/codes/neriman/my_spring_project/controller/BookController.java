@@ -17,9 +17,14 @@ import codes.neriman.my_spring_project.entity.Book;
 import codes.neriman.my_spring_project.exception.OurRunTimeException;
 import codes.neriman.my_spring_project.entity.Book;
 import codes.neriman.my_spring_project.repository.BookRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/books")
+@SecurityRequirement(name = "bearerAuth")
+@Tag(name = "Movie Controller",description = "Book apileri")
 class BookController {
 	 @Autowired
 	    private BookRepository bookRepository;
@@ -33,6 +38,11 @@ class BookController {
 	    public Optional<Book> getBook(@PathVariable Integer id) {
 	        return bookRepository.findById(id);
 	    }
+	    
+	    @Operation(
+				description = "Get api for Book",
+				summary = "This is a summary for Book get api"
+				)
 
 	    @GetMapping
 	    public List<Book> getAllBooks() {

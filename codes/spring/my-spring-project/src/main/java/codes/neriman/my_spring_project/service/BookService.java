@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 @Service
@@ -76,6 +77,8 @@ public class BookService {
     	return responce;
     }
     
+    List<Book> movies = bookRepository.findByUserId(id); 
+    
     public BookResponce getMyOwn() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         Book user = bookRepository.getBookByUsername(username);
@@ -116,6 +119,16 @@ public class BookService {
 
         bookRepository.deleteById(id);
     }
+    
+	Book book = bookRepository.findById(id).orElseThrow(() -> new OurRuntimeException(null, "id tapilmadi"));
+	
+	Supplier<OurRunTimeException> s = new Supplier<OurRunTimeException>() {
+		
+		@Override
+		public OurRunTimeException get() {
+			return new OurRunTimeException(null, "id tapilmadi");
+		}
+	};
 
 
 }
