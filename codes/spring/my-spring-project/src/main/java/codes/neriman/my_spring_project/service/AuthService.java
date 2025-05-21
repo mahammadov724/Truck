@@ -85,11 +85,11 @@ public class AuthService {
 		if (id == null || id<=0) { 
 		throw new OurRunTimeException(null, "id mutleqdir"); 
 		} 
-		Optional<Book> finded = bookRepository.findById(id); 
-		if (finded.isPresent()) { 
-		Book book = finded.get(); 
-		bookRepository.deleteById(id); 
-		bookRepository.deleteBookInfo (book.getId()); 
+		Optional<Reader> byId = readerRepository.findById(id);
+		if (byId.isPresent()) { 
+		Reader reader = byId.get(); 
+		readerRepository.deleteById(id); 
+		bookRepository.deleteBookInfo (reader.getId()); 
 		}else { 
 		throw new OurRunTimeException(null, "id tapilmadi"); }}
 

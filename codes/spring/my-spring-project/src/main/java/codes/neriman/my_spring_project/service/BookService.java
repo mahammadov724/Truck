@@ -77,11 +77,11 @@ public class BookService {
     	return responce;
     }
     
-    List<Book> movies = bookRepository.findByUserId(id); 
+//    List<Book> movies = bookRepository.findByUserId(id); 
     
     public BookResponce getMyOwn() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        Book user = bookRepository.getBookByUsername(username);
+        Reader user = readerRepository.getUserByUsername(username);
         Integer id = user.getId();
 
         List<Book> books = bookRepository.findByUserId(id);
@@ -118,17 +118,11 @@ public class BookService {
         }
 
         bookRepository.deleteById(id);
+        
+        
     }
     
-	Book book = bookRepository.findById(id).orElseThrow(() -> new OurRuntimeException(null, "id tapilmadi"));
 	
-	Supplier<OurRunTimeException> s = new Supplier<OurRunTimeException>() {
-		
-		@Override
-		public OurRunTimeException get() {
-			return new OurRunTimeException(null, "id tapilmadi");
-		}
-	};
 
 
 }

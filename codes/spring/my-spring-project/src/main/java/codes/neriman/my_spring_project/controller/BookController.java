@@ -25,7 +25,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RequestMapping("/books")
 @SecurityRequirement(name = "bearerAuth")
 @Tag(name = "Movie Controller",description = "Book apileri")
-class BookController {
+public class BookController {
 	 @Autowired
 	    private BookRepository bookRepository;
 	 

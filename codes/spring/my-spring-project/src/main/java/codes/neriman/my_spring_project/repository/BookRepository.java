@@ -22,9 +22,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 	 @Modifying
 	void deleteBookInfo(Integer id);
 
-	Book getUserByUsername(String username);
-
 	List<Book> findByUserId(Integer id);
 
-	Book getBookByUsername(String username);
 }
