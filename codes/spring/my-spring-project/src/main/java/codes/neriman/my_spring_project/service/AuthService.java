@@ -89,4 +89,9 @@ public class AuthService {
 		}
 	}
 
+	public ResponseEntity<Map<String, String>> getBookDetail(String token) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
