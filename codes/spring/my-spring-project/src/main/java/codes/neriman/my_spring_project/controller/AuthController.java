@@ -42,12 +42,12 @@ public class AuthController {
 	}
 	
 	@GetMapping(path = "/profile")
-	public ResponseEntity<Map<String, String>> getUserDetails(@RequestHeader("Authorization") String token) {
-	    return service.getBookDetail(token);
+	public ResponseEntity<Map<String, Object>> getUserDetails(@RequestHeader("Authorization") String token) {
+	    return service.getUserDetail(token);
 	}
 
 	
-	@DeleteMapping
+	@DeleteMapping(path = "/{id}")
 	public void deleteBook(@PathVariable Integer id) {
 		service.delete(id);
 	}

@@ -2,9 +2,11 @@ package codes.neriman.my_spring_project.util;
 	
 
 import java.security.Key;
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -27,8 +29,13 @@ public class JwtUtil {
 		System.out.println(decode.length);
 	}
 	
-	public String generateToken(String username) {
+	public String generateToken(String username,String firstName,List<String> authorities) {
+		Map<String, String> claims = new HashMap<String, String>();
+		claims.put("firstName", firstName);
+		String authorityString = String.join(",", authorities);
+		claims.put("authorities", authorityString);
 		return Jwts.builder()
+		.setClaims(claims)
 		.setSubject(username)
 		.setIssuedAt(new Date())
 		.setExpiration(new Date(System.currentTimeMillis() + 86400000))
@@ -46,18 +53,21 @@ public class JwtUtil {
 		return claims.getSubject();
 	}
 	
-	public Map<String, String> extractClaims(String token) {
+	public Map<String, Object> extractClaims(String token) {
  		Claims claims = Jwts.parserBuilder()
  				.setSigningKey(signingKey)
  				.build()
  				.parseClaimsJws(token)
  				.getBody();
  		
- 		Map<String, String> claimMap=new HashMap<String, String>();
+ 		Map<String, Object> claimMap=new HashMap<String, Object>();
  		claimMap.put("firstName", claims.get("firstName").toString());
- 		claimMap.put("lastName", claims.get("lastName").toString());
- 		claimMap.put("email", claims.get("email").toString());
- 		
+ 		String authorities = (String) claims.get("authorities");
+		if (authorities != null && !authorities.isEmpty()) {
+			claimMap.put("authorities", Arrays.asList(authorities.split(",")));
+		}else {
+			claimMap.put("authorities", new String[] {});
+		}
  		return claimMap;
  	}
 }

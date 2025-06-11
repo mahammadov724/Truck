@@ -63,14 +63,14 @@ public class AuthService {
 		List<String> authorityList = authorityRepository.findUserAuthority(user.get().getUsername()).stream()
 				.map(Authorities::getAuthority).collect(Collectors.toList());
 
-		return jwtUtil.generateToken(user.get().getUsername());
+		return jwtUtil.generateToken(user.get().getUsername(),user.get().getName(),authorityList);
 	}
 
-	public ResponseEntity<Map<String, String>> getUserDetail(String token) {
-		if (token.startsWith("Bearer ")) {
+	public ResponseEntity<Map<String, Object>> getUserDetail(String token) {
+		if (token.startsWith("Bearer")) {
 			token = token.substring(7);
 		}
-		Map<String, String> claims = jwtUtil.extractClaims(token);
+		Map<String, Object> claims = jwtUtil.extractClaims(token);
 		return ResponseEntity.ok(claims);
 	}
 
@@ -87,11 +87,6 @@ public class AuthService {
 		} else {
 			throw new OurRunTimeException(null, "ID not found");
 		}
-	}
-
-	public ResponseEntity<Map<String, String>> getBookDetail(String token) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
