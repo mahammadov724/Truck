@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -29,7 +31,10 @@ public class AuthService {
 	private final BookRepository bookRepository;
 	private final PasswordEncoder passwordEncoder;
 	private final AuthorityRepository authorityRepository;
-
+	
+	@Autowired
+	private ModelMapper modelMapper;
+	
 	public String create(AuthRequestDto dto) {
 		Optional<Reader> byUsername = readerRepository.findByUsername(dto.getUsername());
 		if (byUsername.isPresent()) {
@@ -39,10 +44,7 @@ public class AuthService {
 		String encodedPassword = passwordEncoder.encode(dto.getPassword());
 
 		Reader reader = new Reader();
-		reader.setId(null);
-		reader.setName(dto.getName());
-		reader.setUsername(dto.getUsername());
-		reader.setPassword(encodedPassword);
+		modelMapper.map(dto, reader);
 		readerRepository.save(reader);
 
 		Authorities authority = new Authorities();
