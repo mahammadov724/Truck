@@ -17,6 +17,7 @@ import codes.neriman.my_spring_project.entity.Book;
 import codes.neriman.my_spring_project.exception.OurRunTimeException;
 import codes.neriman.my_spring_project.entity.Book;
 import codes.neriman.my_spring_project.repository.BookRepository;
+import codes.neriman.my_spring_project.responce.BookResponce;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -70,6 +71,11 @@ public class BookController {
 			}else {
 				throw new OurRunTimeException(null, "id tapilmadi :<");
 			}
+	    }
+	    
+	    @GetMapping("/pagination/begin/{begin}/length/{length}")
+	    public BookResponce pagination(@PathVariable Integer begin,@PathVariable Integer length) {
+	        return bookService.findPagination(begin,length);
 	    }
 	    
 	    @GetMapping("/titles")
