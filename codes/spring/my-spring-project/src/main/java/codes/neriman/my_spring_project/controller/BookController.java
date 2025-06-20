@@ -18,6 +18,7 @@ import codes.neriman.my_spring_project.exception.OurRunTimeException;
 import codes.neriman.my_spring_project.entity.Book;
 import codes.neriman.my_spring_project.repository.BookRepository;
 import codes.neriman.my_spring_project.responce.BookResponce;
+import codes.neriman.my_spring_project.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -28,7 +29,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Tag(name = "Movie Controller",description = "Book apileri")
 public class BookController {
 	 @Autowired
-	    private BookRepository bookRepository;
+	 private BookService bookService;
 	 
 	    @PostMapping
 	    public Book createBook(@RequestBody Book book) {
@@ -75,7 +76,7 @@ public class BookController {
 	    
 	    @GetMapping("/pagination/begin/{begin}/length/{length}")
 	    public BookResponce pagination(@PathVariable Integer begin,@PathVariable Integer length) {
-	        return bookService.findPagination(begin,length);
+	        return bookRepository.pagination(begin,length);
 	    }
 	    
 	    @GetMapping("/titles")
