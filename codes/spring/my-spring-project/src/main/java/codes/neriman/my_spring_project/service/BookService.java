@@ -6,6 +6,7 @@ import codes.neriman.my_spring_project.entity.Reader;
 import codes.neriman.my_spring_project.exception.OurRunTimeException;
 import codes.neriman.my_spring_project.repository.BookRepository;
 import codes.neriman.my_spring_project.repository.ReaderRepository;
+import codes.neriman.my_spring_project.repository.ViewRepository;
 import codes.neriman.my_spring_project.responce.BookResponce;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class BookService {
     
     @Autowired
     private ReaderRepository readerRepository;
+    
+    @Autowired
+    private ViewRepository viewRepository;
 
     public BookResponce getBooks() {
         List<Book> books = bookRepository.findAll(); 
@@ -121,7 +125,38 @@ public class BookService {
         
         
     }
+
+	public Optional<Book> findById(Integer id) {
+		return null;
+	}
+
+	public void deleteById(Integer id) {
+		
+	}
+
+	public BookResponce pagination(Integer begin, Integer length) {
+		return null;
+	}
+
+	public List<String> findAllBookTitles() {
+		return null;
+	}
+
+	public List<Book> findAll() {
+		return null;
+	}
+
+	public boolean existsById(Integer id) {
+		return false;
+	}
+
+	public Book save(Book book) {
+		return null;
+	}
     
+	public List<Book> findView(){
+		return viewRepository.findAll();
+	}
 	
 
 

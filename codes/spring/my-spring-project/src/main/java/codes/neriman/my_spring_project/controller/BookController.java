@@ -33,12 +33,12 @@ public class BookController {
 	 
 	    @PostMapping
 	    public Book createBook(@RequestBody Book book) {
-	        return bookRepository.save(book);
+	        return bookService.save(book);
 	    }
 
 	    @GetMapping("/{id}")
 	    public Optional<Book> getBook(@PathVariable Integer id) {
-	        return bookRepository.findById(id);
+	        return bookService.findById(id);
 	    }
 	    
 	    @Operation(
@@ -48,14 +48,14 @@ public class BookController {
 
 	    @GetMapping
 	    public List<Book> getAllBooks() {
-	        return bookRepository.findAll();
+	        return bookService.findAll();
 	    }
 	    
 	    @PutMapping("/{id}")
 	    public Book updateBook(@PathVariable Integer id, @RequestBody Book book) {
-	        if (bookRepository.existsById(id)) {
+	        if (bookService.existsById(id)) {
 	            book.setId(id);
-	            return bookRepository.save(book);
+	            return bookService.save(book);
 	        } else {
 	            return null;
 	        }
@@ -67,8 +67,8 @@ public class BookController {
 	        if (id== null || id <= 0) {
 				throw new OurRunTimeException(null, "id mutleqdir duzgun olsun");
 			}
-	        if (bookRepository.findById(id).isPresent()) {
-	        	bookRepository.deleteById(id);
+	        if (bookService.findById(id).isPresent()) {
+	        	bookService.deleteById(id);
 			}else {
 				throw new OurRunTimeException(null, "id tapilmadi :<");
 			}
@@ -76,12 +76,12 @@ public class BookController {
 	    
 	    @GetMapping("/pagination/begin/{begin}/length/{length}")
 	    public BookResponce pagination(@PathVariable Integer begin,@PathVariable Integer length) {
-	        return bookRepository.pagination(begin,length);
+	        return bookService.pagination(begin,length);
 	    }
 	    
 	    @GetMapping("/titles")
 	    public List<String> getAllBookTitles() {
-	        return bookRepository.findAllBookTitles();
+	        return bookService.findAllBookTitles();
 	    }
 
 	    
