@@ -16,7 +16,7 @@ public class Person {
 	        this.age = age_;
 	    }
 
-	    private Person(String name_, int age_) {
+	    protected Person(String name_, int age_) {
 	        this.name = name_;
 	        this.age = age_;
 	    }
