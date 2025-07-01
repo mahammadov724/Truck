@@ -3,6 +3,7 @@ package codes.neriman.my_spring_project.entity;
 
 
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,5 +30,5 @@ public class User {
     private String name;
 
     @OneToMany(mappedBy = "user")
-    private List<Book> books;
+    private Set<Book> books;
 }

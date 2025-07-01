@@ -7,11 +7,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,23 +24,30 @@ import lombok.Setter;
 @NoArgsConstructor
 @Table(name = "books")
 public class Book {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     private String title;
     private String author;
     private int year;
-    
-    private Integer userId;
-    
+
     @ManyToMany
     private Set<Category> categories;
-    
+
     @OneToOne
     @JoinColumn(name = "publisher_id")
     private Publisher publisher;
-    
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+	public void setUserId(Integer id2) {
+		
+	}
+
+	public Object getUserId() {
+		return null;
+	}
 }

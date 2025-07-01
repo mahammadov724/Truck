@@ -36,7 +36,7 @@ public class BookController {
 	        return bookService.save(book);
 	    }
 
-	    @GetMapping("/{id}")
+	    @GetMapping(path = "/{id}",produces = {"application/json","application/xml"})
 	    public Optional<Book> getBook(@PathVariable Integer id) {
 	        return bookService.findById(id);
 	    }
