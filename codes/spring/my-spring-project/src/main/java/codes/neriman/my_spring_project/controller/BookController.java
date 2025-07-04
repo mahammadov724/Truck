@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import codes.neriman.my_spring_project.entity.Book;
 import codes.neriman.my_spring_project.exception.OurRunTimeException;
 import codes.neriman.my_spring_project.entity.Book;
 import codes.neriman.my_spring_project.repository.BookRepository;
+import codes.neriman.my_spring_project.responce.BookListResponceModel;
 import codes.neriman.my_spring_project.responce.BookResponce;
 import codes.neriman.my_spring_project.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -84,5 +86,21 @@ public class BookController {
 	        return bookService.findAllBookTitles();
 	    }
 
-	    
+	    @GetMapping(path = "/id-title")
+		public MappingJacksonValue getBookIdTitle() {
+			BookListResponceModel responce = new BookListResponceModel();
+			List<Book> books = bookRepository.findAll();
+			
+			responce.setBookResponce(bookService.convertBookToResponceModel(books));
+			return filtering.filter("movies", responce, "id","title");
+		}
+		
+		@GetMapping(path = "/title-genre")
+		public MappingJacksonValue getBookTitleGenre() {
+			BookListResponceModel responce = new BookListResponceModel();
+			List<Book> books = BookRepository.findAll();
+			
+			responce.setBookResponce(bookService.convertBookToResponceModel(books));
+			return filtering.filter("movies", responce, "title","genre");
+		}
 }

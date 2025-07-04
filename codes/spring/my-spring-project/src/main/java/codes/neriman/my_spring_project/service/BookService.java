@@ -8,11 +8,13 @@ import codes.neriman.my_spring_project.repository.BookRepository;
 import codes.neriman.my_spring_project.repository.ReaderRepository;
 import codes.neriman.my_spring_project.repository.ViewRepository;
 import codes.neriman.my_spring_project.responce.BookResponce;
+import codes.neriman.my_spring_project.responce.BookResponceModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -158,6 +160,15 @@ public class BookService {
 		return viewRepository.findAll();
 	}
 	
+	public List<BookResponceModel> convertBookToResponceModel(List<Book> books) {
+		List<BookResponceModel> dtos = new ArrayList<BookResponceModel>();
+		for (Book book : books) {
+			BookResponceModel dto = new BookResponceModel();
+			mapper.map(book, dto);
+			dtos.add(dto);
+		}
+		return dtos;
+	}
 
 
 }
