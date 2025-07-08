@@ -3,6 +3,7 @@ package codes.neriman.my_spring_project.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.validator.internal.util.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ch.qos.logback.classic.Logger;
+import codes.neriman.my_spring_project.dynamic.DynamicFiltering;
 import codes.neriman.my_spring_project.entity.Book;
 import codes.neriman.my_spring_project.exception.OurRunTimeException;
 import codes.neriman.my_spring_project.entity.Book;
@@ -30,6 +33,15 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @SecurityRequirement(name = "bearerAuth")
 @Tag(name = "Movie Controller",description = "Book apileri")
 public class BookController {
+	private Logger log = LoggerFactory.getLogger(BookController.class);
+	
+	
+	@Autowired
+	private DynamicFiltering dynamicFiltering;
+	
+	@Autowired
+	private BookRepository bookRepository;
+	
 	 @Autowired
 	 private BookService bookService;
 	 
@@ -47,6 +59,10 @@ public class BookController {
 				description = "Get api for Book",
 				summary = "This is a summary for Book get api"
 				)
+	    public BookResponce getAll() {
+			log.info("GET books/getAll cagirildi");
+			return bookService.get();
+		}
 
 	    @GetMapping
 	    public List<Book> getAllBooks() {
@@ -92,15 +108,15 @@ public class BookController {
 			List<Book> books = bookRepository.findAll();
 			
 			responce.setBookResponce(bookService.convertBookToResponceModel(books));
-			return filtering.filter("movies", responce, "id","title");
+			return dynamicFiltering.filter("books", responce, "id","title");
 		}
 		
 		@GetMapping(path = "/title-genre")
 		public MappingJacksonValue getBookTitleGenre() {
 			BookListResponceModel responce = new BookListResponceModel();
-			List<Book> books = BookRepository.findAll();
+			List<Book> books = bookRepository.findAll();
 			
 			responce.setBookResponce(bookService.convertBookToResponceModel(books));
-			return filtering.filter("movies", responce, "title","genre");
+			return dynamicFiltering.filter("books", responce, "title","genre");
 		}
 }

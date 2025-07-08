@@ -10,6 +10,7 @@ import codes.neriman.my_spring_project.repository.ViewRepository;
 import codes.neriman.my_spring_project.responce.BookResponce;
 import codes.neriman.my_spring_project.responce.BookResponceModel;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class BookService {
+	@Autowired
+	private ModelMapper modelMapper;
 
     @Autowired
     private BookRepository bookRepository;
@@ -164,7 +167,7 @@ public class BookService {
 		List<BookResponceModel> dtos = new ArrayList<BookResponceModel>();
 		for (Book book : books) {
 			BookResponceModel dto = new BookResponceModel();
-			mapper.map(book, dto);
+			modelMapper.map(book, dto);
 			dtos.add(dto);
 		}
 		return dtos;
