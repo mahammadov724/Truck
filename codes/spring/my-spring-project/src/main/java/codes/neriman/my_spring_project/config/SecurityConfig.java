@@ -35,6 +35,7 @@ public class SecurityConfig {
 	            .requestMatchers("/auth/register").permitAll()
 	            .requestMatchers("/auth/titles").permitAll()
 	            .requestMatchers("/auth/login").permitAll()
+	            .requestMatchers("/files/download/**").permitAll()
 	            .requestMatchers(
                         "/swagger-ui/**",
                         "/swagger-ui.html",
